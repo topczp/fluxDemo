@@ -16,3 +16,11 @@ class DemoController(@Value("\${envParam:noParamPassed}") val envValue: String) 
     }
 
 }
+
+@RestController
+@RequestMapping("/")
+class DefaultController {
+
+    @GetMapping
+    fun healthCheck() = "I am alive"
+}
