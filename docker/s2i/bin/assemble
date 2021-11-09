@@ -17,6 +17,7 @@ __check_common_already_loaded 2> /dev/null || source $S2I_PATH/common.sh
 
 case $BUILDER in
     [Gg][Rr][Aa][Dd][Ll][Ee])
+	echo "GRADLE BUILDER !!!"
 	restore_artifacts
 	build_gradle_project
 	;;
