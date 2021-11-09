@@ -34,6 +34,7 @@ __check_common_already_loaded
 
 # If a gradle.build is present, this is a Gradle build scenario
 function build_gradle_project() {
+   echo "Building !!!!!!!!!!!!!!!!!!!!!!!."
   if [ -f "$S2I_SOURCE_DIR/build.gradle" ]; then
     echo "Building with gradle. $S2I_SOURCE_DIR/build.gradle found."
 
