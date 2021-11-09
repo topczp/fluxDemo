@@ -1,1 +1,2 @@
 SCRIPT_DEBUG=true
+BUILDER=gradle
