@@ -16,10 +16,6 @@ class DemoApplicationTests {
     @Value("\${envParam}")
     lateinit var propertyFromConfig: String
 
-//    @Autowired
-//    @Value("\${spring.profiles.active}")
-//    lateinit var activeProfile: String
-
     @Autowired
     lateinit var environment: Environment
 
@@ -28,7 +24,6 @@ class DemoApplicationTests {
         assertThat(propertyFromConfig).isEqualTo("overridden in test")
         val activeProfileFromEnvironment = environment.activeProfiles[0]
         assertThat(activeProfileFromEnvironment).isEqualTo("test")
-//        assertThat(activeProfile).isEqualTo("from application properties")
     }
 
 }
