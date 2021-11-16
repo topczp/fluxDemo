@@ -1,0 +1,32 @@
+
+spec:
+  template:
+  #   volumes:
+  #       - name: config
+  #         gitRepo:
+  #           repository: 'https://github.com/jstrachan/sample-springboot-config.git'
+  #           revision: 667ee4db6bc842b127825351e5c9bae5a4fb2147
+  #           directory: .
+    spec:
+      containers:
+        - env:
+            - name: DB_USERNAME
+
+              valueFrom:
+                 secretKeyRef:
+                   name: postgresql-persistent
+                   key: database-user
+            - name: DB_PASSWORD
+
+              valueFrom:
+                 secretKeyRef:
+                   name: postgresql-persistent
+                   key: database-password
+            - name: DB_NAME
+
+              valueFrom:
+                 secretKeyRef:
+                   name: postgresql-persistent
+                   key: database-name
+            # - name: JAVA_OPTIONS
+            #   value: "-Dspring.profiles.active=openshift"
