@@ -28,7 +28,6 @@ data class Greetings(val message: String)
 @RestController
 @RequestMapping("/")
 class DefaultController {
-
     @GetMapping
     fun healthCheck() = "I am alive"
 }
