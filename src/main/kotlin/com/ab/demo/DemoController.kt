@@ -5,29 +5,22 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Mono
+import org.springframework.beans.factory.annotation.Autowired
+import javax.persistence.*
+import java.util.Date;
 
-
-@RestController
-@RequestMapping("/hello")
-class DemoController(
-    @Value("\${envParam:noParamPassed}") val envValue: String,
-    val helloService: HelloService
-) {
-    @GetMapping("/envParam")
-    fun getEnvParam() = envValue
-
-    @GetMapping
-    fun hello(): Mono<Greetings> {
-        val paramMono = helloService.callRemoteEndpoint()
-        return paramMono.map { Greetings(message = "hello. Evn param is $it") }
-    }
-}
-
-data class Greetings(val message: String)
+import com.ab.demo.VisitKt;
 
 @RestController
 @RequestMapping("/")
-class DefaultController {
-    @GetMapping
-    fun healthCheck() = "I am alive"
+class DemoController {
+
+    @Autowired
+    lateinit var repository: VisitRepo
+
+	@GetMapping("/hello")
+	fun findAll() : String {
+        repository.save(VisitKt(id = 0, visit_date = Date()));
+         return  "I am alive. Visits so far: " + repository.count() 
+    };
 }
